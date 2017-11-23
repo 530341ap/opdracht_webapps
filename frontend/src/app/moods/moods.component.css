@@ -1,0 +1,21 @@
+.btn-floating {
+    margin: 15px;
+    display: block;
+}
+
+.collection {
+    margin: 0px;
+}
+
+.dropdown-button {
+    width: 100%;
+}
+
+.collection .active {
+    background-color: #ffb300;
+    color: white !important;
+}
+
+.collection .collection-item {
+    color: #ff8f00;
+}

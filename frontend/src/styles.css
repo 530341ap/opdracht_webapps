@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+@import './assets/css/materialize.min.css';
+html {
+    font-family: "Roboto", sans serif;
+    font-weight: 400;
+    font-stretch: condensed;
+}
+.brand-logo {
+    margin-left: 10px;
+}
+.content {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    flex: 1 0 auto;
+}

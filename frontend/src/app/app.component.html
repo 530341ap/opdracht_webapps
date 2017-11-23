@@ -1,0 +1,37 @@
+<div class='content'>
+<header>
+        <ul id="dropdown1" class="dropdown-content">
+          <li><a routerLink="profile">Sign in</a></li>
+          <li><a routerLink="profile">Register</a></li>
+        </ul>
+        <nav>
+          <div class="nav-wrapper light-green darken-1">
+            <a routerLink="home" class="brand-logo">Moodio</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a routerLink="moods">Moods</a></li>
+              <li><a routerLink="fitness">Fitness</a></li>
+              <li><a routerLink="food">Food</a></li>
+              <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons">person</i></a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <main>
+            <router-outlet></router-outlet>
+      </main>
+      <footer class="page-footer light-green darken-3">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">About Moodio</h5>
+              <p class="grey-text text-lighten-4">Moodio is a site where you can keep track of your moods and health.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+            © 2017 HoGent
+          </div>
+        </div>
+      </footer>
+    </div>
