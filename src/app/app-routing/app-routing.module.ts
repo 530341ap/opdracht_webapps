@@ -5,15 +5,20 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MoodsComponent } from '../moods/moods.component';
 import { FoodComponent } from '../food/food.component';
 import { FitnessComponent } from '../fitness/fitness.component';
-import { ProfileComponent } from '../profile/profile.component';
+import { ProfileComponent } from '../user/profile/profile.component';
 import { HomeComponent } from '../home/home.component';
+import { LoginComponent } from '../user/login/login.component';
+import { RegisterComponent } from '../user/register/register.component';
+import { AuthGuardService } from '../auth-guard.service';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent},
-  { path: 'moods', component: MoodsComponent},
-  { path: 'food', component: FoodComponent },
-  { path: 'fitness', component: FitnessComponent},
-  { path: 'profile', component: ProfileComponent},
+  { path: 'moods', canActivate: [ AuthGuardService ], component: MoodsComponent},
+  { path: 'food', canActivate: [ AuthGuardService ], component: FoodComponent },
+  { path: 'fitness', canActivate: [ AuthGuardService ], component: FitnessComponent},
+  { path: 'profile', canActivate: [ AuthGuardService ], component: ProfileComponent},
+  { path: 'users/login', component: LoginComponent},
+  { path: 'users/register', component: RegisterComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full'}
 ]
 
@@ -31,7 +36,9 @@ const appRoutes: Routes = [
     MoodsComponent,
     FoodComponent,
     FitnessComponent,
-    ProfileComponent
+    ProfileComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   exports: [
     RouterModule

@@ -6,6 +6,7 @@ export class Activity {
     constructor(icon:String, name:String, id?:Number) {
         this._icon = icon;
         this._id = id;
+        this._name = name;
     }
 
     get icon() {

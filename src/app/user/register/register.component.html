@@ -1,0 +1,24 @@
+
+<form [formGroup]="user" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="input-field col s12">
+          <label for="username">username:</label>
+          <input type="text" id="username" formControlName='username'>
+          <div class='ui pointing red basic label' 
+            *ngIf='user.get("username").errors?.userAlreadyExists && user.get("username").touched'>
+              a user with that name already exists
+          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+          <label for="password">password:</label>
+          <input type="text" id="password" formControlName='password'>
+      </div>
+    </div>
+    <div class="row">
+    <div class="input-field col s12">
+      <button class="wave-effect btn amber darken-1">Log in</button>
+    </div>
+  </div>
+  </form>
