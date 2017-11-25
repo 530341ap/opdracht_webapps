@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "node app",
+    "start": "source ./app-env && node app",
     "serve": "ng serve",
     "build": "ng build",
     "test": "ng test",
