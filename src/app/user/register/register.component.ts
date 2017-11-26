@@ -3,26 +3,29 @@ import { FormGroup, Validators, AbstractControl, ValidatorFn, FormBuilder } from
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../../authentication.service';
 import { Router } from '@angular/router';
+import { AuthGuardService } from '../../auth-guard.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  providers: [AuthenticationService, AuthGuardService]
 })
 export class RegisterComponent implements OnInit {
   public user: FormGroup;
+  public passwordGroup: FormGroup;
 
   constructor(private fb: FormBuilder,private authenticationService: AuthenticationService, private router: Router) { }
   
   ngOnInit() {
     this.user = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(4)], 
-        this.serverSideValidateUsername()],
-      passwordGroup: this.fb.group({
+        this.serverSideValidateUsername()]});
+      this.passwordGroup = this.fb.group({
         password: ['', [Validators.required, this.passwordValidator(12)]],
         confirmPassword: ['', Validators.required]
-      }, { validator: this.comparePasswords })
-    });
+      }, { validator: this.comparePasswords });
+  
   }
 
   passwordValidator(length: number): ValidatorFn {
@@ -50,4 +53,6 @@ export class RegisterComponent implements OnInit {
       })
     };
   }
+
+  
 }

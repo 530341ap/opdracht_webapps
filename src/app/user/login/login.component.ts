@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthenticationService } from '../../authentication.service';
 import { Router } from '@angular/router';
+import { AuthGuardService } from '../../auth-guard.service';
+import { HttpModule } from '@angular/http';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [AuthenticationService, AuthGuardService]
 })
 export class LoginComponent implements OnInit {
   public user: FormGroup;

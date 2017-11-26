@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../../authentication.service';
+import { AuthGuardService } from '../../auth-guard.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
+  providers: [AuthenticationService, AuthGuardService]
 })
 export class ProfileComponent implements OnInit {
 

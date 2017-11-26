@@ -16,7 +16,6 @@ require('./models/MoodCategory');
 require('./models/User');
 require('./config/passport');
 mongoose.connect('mongodb://localhost/mooddb', {  useMongoClient: true });
-var User = mongoose.model('User');
 
 var app = express();
 
@@ -26,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.use('/moodio', index);
+app.use('/', index);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
@@ -46,20 +45,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-passport.use(new LocalStrategy(
-  function (username, password, done) {
-      User.findOne({ username: username }, function (err, user) {
-          if (err) { return done(err); }
-          if (!user) {
-              return done(null, false, { message: 'Incorrect username.' });
-          }
-          if (!user.validPassword(password)) {
-              return done(null, false, { message: 'Incorrect password.' });
-          }
-          return done(null, user);
-      });
-  }));
 
 app.use(passport.initialize());
 
