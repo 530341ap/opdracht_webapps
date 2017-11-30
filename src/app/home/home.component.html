@@ -1,7 +1,7 @@
-
-  <div class="row">
+<div *ngIf="!loggedin">
+  <div class="row" >
     <h2 class="center-align">Register now</h2>
-    <p class="center-align"><a class="waves-effect waves-light btn amber darken-1">Register</a> </p>
+    <p class="center-align"><a class="waves-effect waves-light btn amber darken-1" routerLink="/users/register">Register</a> </p>
    </div>
    <div class="row">  
          <div class="col s4">
@@ -20,4 +20,9 @@
            <p class="center-align">Keep up with your fitness or food. Share recipes and find your perfect regime.</p>
          </div>
    </div>
-
+  </div>
+  <div *ngIf="loggedin">
+    <h2 class="center-align">Welcome {{username}}!</h2>
+    <p class="center-align">How are you today?</p>
+    <p class="center-align"><a class="waves-effect waves-light btn amber darken-1">Fill in your mood</a> </p>
+  </div>

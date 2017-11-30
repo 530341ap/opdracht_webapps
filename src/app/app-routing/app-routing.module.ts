@@ -10,9 +10,14 @@ import { HomeComponent } from '../home/home.component';
 import { LoginComponent } from '../user/login/login.component';
 import { RegisterComponent } from '../user/register/register.component';
 import { AuthGuardService } from '../auth-guard.service';
+import { AuthenticationService } from '../authentication.service';
+import { LogoutComponent } from '../user/logout/logout.component';
+import { AddMoodComponent } from '../moods/add-mood/add-mood.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent},
+  { path: 'users/logout', component: LogoutComponent},
+  { path: 'addMood', canActivate: [ AuthGuardService ], component: AddMoodComponent},
   { path: 'moods', canActivate: [ AuthGuardService ], component: MoodsComponent},
   { path: 'food', canActivate: [ AuthGuardService ], component: FoodComponent },
   { path: 'fitness', canActivate: [ AuthGuardService ], component: FitnessComponent},
@@ -38,10 +43,12 @@ const appRoutes: Routes = [
     FitnessComponent,
     ProfileComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LogoutComponent
   ],
   exports: [
     RouterModule
-  ]
+  ],
+  providers: [AuthenticationService, AuthGuardService]
 })
 export class AppRoutingModule { }

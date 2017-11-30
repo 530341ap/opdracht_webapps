@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../authentication.service';
 import { Router } from '@angular/router';
 import { AuthGuardService } from '../../auth-guard.service';
@@ -18,11 +18,17 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,private authService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
+    this.user = this.fb.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]});
   }
 
   onSubmit() {
+    console.log(this.user.value.username)
+    console.log(this.user.value.password)
     this.authService.login(this.user.value.username, 
             this.user.value.password).subscribe(val => {
+      console.log("pls do something")
       if (val) {
         if (this.authService.redirectUrl) {
           this.router.navigateByUrl(this.authService.redirectUrl);

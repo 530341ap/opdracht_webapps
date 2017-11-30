@@ -7,8 +7,6 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-var index = require('./server/routes/index');
-var users = require('./server/routes/users');
 var mongoose = require('mongoose');
 require('./models/Activity');
 require('./models/Mood');
@@ -16,6 +14,10 @@ require('./models/MoodCategory');
 require('./models/User');
 require('./config/passport');
 mongoose.connect('mongodb://localhost/mooddb', {  useMongoClient: true });
+//"c:\Program Files\MongoDB\Server\3.4\bin\mongod.exe" --dbpath "c:\Program Files\MongoDB\data\db"
+
+var index = require('./server/routes/index');
+var users = require('./server/routes/users');
 
 var app = express();
 
@@ -26,9 +28,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/API/users', users);
 
-// catch 404 and forward to error handler
+/*// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
@@ -44,7 +46,7 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-});
+});*/
 
 app.use(passport.initialize());
 

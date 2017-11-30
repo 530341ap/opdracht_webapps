@@ -1,0 +1,41 @@
+<div id="container">
+<div class="row">
+  <h1 class="title" *ngIf="mood == null">Add mood</h1>
+  <h1 class="title" *ngIf="mood != null">Change </h1>
+  <form [formGroup]='moodform' (ngSubmit)='onSubmit()'>
+    <div class="row">
+      <div class="input-field col s6">
+        <input data-error="Geef een geldige date in" id="date" type="text" class="datepicker" formControlName='date'>
+        <label for="date">Date</label>
+      </div>
+      <div class="input-field col s6">
+        <input data-error="Geef een geldige tijd in" id="time" type="text" class="timepicker" formControlName='time'>
+        <label for="time">Time</label>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngFor="let activity of activities"  class="col s6">
+        <label for="{{activity}}">{{activity}}</label>
+        <input name="group3" type="checkbox" id="{{activity}}" checked />
+      </div>
+    </div>
+    <div class="row"><h5>Category</h5></div>
+      <div class="row">
+      <div class="col s6">
+        <div class="rating" id="category">
+          <span *ngFor="let category of categories"><input type="radio" name="rating" id="str5" value="{{category.name}}"><label for="str5"></label>
+            <span class="categoryName">Amazing</span></span>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s2">
+        <button type="submit" class="waves-effect waves-light btn amber darken-1" >Save</button>
+      </div>
+      <div class="input-field col s2">
+        <a routerLink="/moods" class="waves-effect waves-light btn amber darken-1">Cancel</a>
+      </div>
+    </div>
+  </form>
+</div>
+</div>

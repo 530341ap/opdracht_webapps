@@ -11,7 +11,11 @@ let moodSchema = mongoose.Schema({
     moodCategory: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'MoodCategory'
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 });
 
-mongoose.model('mood',moodSchema);
+mongoose.model('Mood',moodSchema);

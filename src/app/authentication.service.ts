@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class AuthenticationService {
-  private _url = '/moodio/users';
+  private _url = 'http://localhost:4200/API/users';
   private _user$: BehaviorSubject<string>;
   public redirectUrl: string;
   
@@ -19,6 +19,7 @@ export class AuthenticationService {
   }       
 
   login(username: string, password: string): Observable<boolean> {
+    console.log(username);
     return this.http.post(`${this._url}/login`, 
       { username: username, password: password })
       .map(res => res.json()).map(res => {
@@ -35,9 +36,11 @@ export class AuthenticationService {
   }
   
   register(username: string, password: string): Observable<boolean> {
+    console.log("Service")
     return this.http.post(`${this._url}/register`, 
       { username: username, password: password })
       .map(res => res.json()).map(res => {
+        console.log(username);
         const token = res.token;
         if (token) {
           localStorage.setItem('currentUser', 

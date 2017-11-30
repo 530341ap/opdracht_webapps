@@ -1,10 +1,17 @@
 <div class="container">
 <div class='row'>
-  <div class='col s10'><h3>Moods</h3></div>
-  <div class='col s2'>
-    <a class="btn-floating btn-large amber darken-1">
-      <i class="large material-icons">add</i>
-    </a>
+  <div class='col s3'><h3>Moods</h3></div>
+  <div class='col offset-s1 s8'>
+      <div class="fixed-action-btn toolbar">
+          <a class="btn-floating btn-large amber darken-1">
+            <i class="large material-icons">add</i>
+          </a>
+          <ul>
+            <li class="waves-effect waves-light"><a href="#!">Activity</a></li>
+            <li class="waves-effect waves-light"><a href="#!">Category</a></li>
+            <li class="waves-effect waves-light"><a routerLink="/addMood">Mood</a></li>
+          </ul>
+        </div>
   </div>
 </div>
 <div class='row'>
@@ -39,16 +46,18 @@
 </div>
 <div class='col offset-s1 s8'>
   <div class='row'>
-      <div class="col s12 m6">
+      <div class="col s12" *ngIf="anyMoods">
+        <h3 class="center-align">U heeft nog geen kaarten</h3>
+      </div>
+      <div class="col s12 m6" *ngFor="let mood of moods">
           <div class="card small">
             <div class="card-content">
-              <i class="medium material-icons">mood</i>
-              <span class="card-title">Happy</span>
-              <p>Activities</p>
+              <span class="card-title">{{mood.category.name}}</span>
+              <p *ngFor="let activity of mood.activities">{{activity.name}}</p>
             </div>
             <div class="card-action">
-              <a href="#"><i class="small material-icons">edit</i></a>
-              <a href="#"><i class="small material-icons">delete</i></a>
+              <a routerLink="editMood/{mood}"><i class="small material-icons">edit</i></a>
+              <a routerLink="removeMood/{mood}"><i class="small material-icons">delete</i></a>
             </div>
           </div>
         </div>

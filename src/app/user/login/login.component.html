@@ -1,13 +1,14 @@
+<div class="container">
 <form [formGroup]="user" (ngSubmit)="onSubmit()">
   <div class="row">
     <div class="input-field col s12">
-        <label for="username">username:</label>
+        <label for="username">Username</label>
         <input type="text" id="username" formControlName='username'>
     </div>
   </div>
   <div class="row">
     <div class="input-field col s12">
-        <label for="password">password:</label>
+        <label for="password">Password</label>
         <input type="text" id="password" formControlName='password'>
     </div>
   </div>
@@ -17,3 +18,4 @@
   </div>
 </div>
 </form>
+</div>

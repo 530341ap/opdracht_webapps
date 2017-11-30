@@ -9,10 +9,16 @@ import { AuthGuardService } from '../auth-guard.service';
   providers: [AuthenticationService, AuthGuardService]
 })
 export class HomeComponent implements OnInit {
+  public loggedin: boolean;
+  public username: String;
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
+    this.authenticationService.user$.subscribe(val => {
+      this.username = val;
+      this.loggedin = (val != null);
+    })
   }
 
 }

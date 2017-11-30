@@ -16,3 +16,10 @@ html {
 main {
     flex: 1 0 auto;
 }
+
+.error {
+    padding: 10px 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: #e64a19;
+}

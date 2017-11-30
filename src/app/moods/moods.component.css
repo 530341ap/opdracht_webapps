@@ -1,6 +1,17 @@
 .btn-floating {
-    margin: 15px;
+    margin: 15px 0px;
     display: block;
+}
+
+.fixed-action-btn {
+    float: right;
+    position: relative;
+    left: 0px;
+    bottom: 0px;
+  }
+
+.toolbar.active {
+    margin: 15px 0px;
 }
 
 .collection {

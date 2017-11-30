@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthenticationService } from '../../authentication.service';
 import { Router } from '@angular/router';
 import { AuthGuardService } from '../../auth-guard.service';
+import { User } from '../User.model';
 
 @Component({
   selector: 'app-register',
@@ -22,10 +23,21 @@ export class RegisterComponent implements OnInit {
       username: ['', [Validators.required, Validators.minLength(4)], 
         this.serverSideValidateUsername()]});
       this.passwordGroup = this.fb.group({
-        password: ['', [Validators.required, this.passwordValidator(12)]],
+        password: ['', [Validators.required, this.passwordValidator(8)]],
         confirmPassword: ['', Validators.required]
       }, { validator: this.comparePasswords });
   
+  }
+
+  onSubmit() {
+    console.log(this.user.valid)
+    console.log(this.passwordGroup.valid)
+    if(this.user.valid && this.passwordGroup.valid){
+      console.log("are u alive?")
+      this.authenticationService.register(this.user.value.username, this.passwordGroup.value.password).subscribe(val => console.log(val));
+      this.router.navigate(['/home']);
+    }
+    
   }
 
   passwordValidator(length: number): ValidatorFn {
