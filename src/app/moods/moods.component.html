@@ -4,12 +4,12 @@
   <div class='col offset-s1 s8'>
       <div class="fixed-action-btn toolbar">
           <a class="btn-floating btn-large amber darken-1">
-            <i class="large material-icons">add</i>
+            <i class="large material-icons">menu</i>
           </a>
           <ul>
-            <li class="waves-effect waves-light"><a href="#!">Activity</a></li>
-            <li class="waves-effect waves-light"><a href="#!">Category</a></li>
-            <li class="waves-effect waves-light"><a routerLink="/addMood">Mood</a></li>
+            <li class="waves-effect waves-light"><a routerLink="/settings"><i class="material-icons">settings</i></a></li>
+            <li class="waves-effect waves-light"><a routerLink="/statistics"><i class="material-icons">insert_chart</i></a></li>
+            <li class="waves-effect waves-light"><a routerLink="/addMood"><i class="material-icons">add</i></a></li>
           </ul>
         </div>
   </div>
@@ -18,36 +18,34 @@
 <div class='col s3'>
   <div class='row'><h4>Choose a month</h4></div>
   <div class='row'>
-      <a class='dropdown-button btn amber darken-1' href='#' data-activates='dropdownJaar'>Year
-          <i class="material-icons right">arrow_drop_down</i>
-      </a>
-      <ul id='dropdownJaar' class='dropdown-content'>
-        <li><a >2016</a></li>
-        <li><a >2017</a></li>
-      </ul>
+      <div class="col s12">
+          <select (change)="selectYear($event.value)">
+            <option value="" disabled selected>Choose a year</option>
+            <option *ngFor="let year of years" value="{{year}}">{{year}}</option>
+          </select>
+      </div>
   </div>
   <div class='row'>
-      <div class="collection">
-          <a href="#!" class="collection-item">January</a>
-          <a href="#!" class="collection-item">February</a>
-          <a href="#!" class="collection-item">March</a>
-          <a href="#!" class="collection-item">April</a>
-          <a href="#!" class="collection-item">May</a>
-          <a href="#!" class="collection-item">June</a>
-          <a href="#!" class="collection-item">July</a>
-          <a href="#!" class="collection-item">August</a>
-          <a href="#!" class="collection-item">September</a>
-          <a href="#!" class="collection-item">October</a>
-          <a href="#!" class="collection-item active">November</a>
-          <a href="#!" class="collection-item">December</a>
-        </div>
+      <ul class="collection">
+          <li id="1" (click)='changeMonth(1)' class="collection-item" >January</li>
+          <li id="2" (click)='changeMonth(2)' class="collection-item" >February</li>
+          <li id="3" (click)='changeMonth(3)' class="collection-item" >March</li>
+          <li id="4" (click)='changeMonth(4)' class="collection-item" >April</li>
+          <li id="5" (click)='changeMonth(5)' class="collection-item" >May</li>
+          <li id="6" (click)='changeMonth(6)' class="collection-item" >June</li>
+          <li id="7" (click)='changeMonth(7)' class="collection-item" >July</li>
+          <li id="8" (click)='changeMonth(8)' class="collection-item" >August</li>
+          <li id="9" (click)='changeMonth(9)' class="collection-item" >September</li>
+          <li id="10" (click)='changeMonth(10)' class="collection-item" >October</li>
+          <li id="11" (click)='changeMonth(11)' class="collection-item" >November</li>
+          <li id="12" (click)='changeMonth(12)' class="collection-item" >December</li>
+          </ul>
   </div>
-  
 </div>
 <div class='col offset-s1 s8'>
   <div class='row'>
       <div class="col s12" *ngIf="anyMoods">
-        <h3 class="center-align">U heeft nog geen kaarten</h3>
+        <h3 class="center-align">U heeft nog geen kaarten voor </h3>
       </div>
       <div class="col s12 m6" *ngFor="let mood of moods">
           <div class="card small">

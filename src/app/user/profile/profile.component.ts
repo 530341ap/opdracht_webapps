@@ -6,7 +6,7 @@ import { AuthGuardService } from '../../auth-guard.service';
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  providers: [AuthenticationService, AuthGuardService]
+   
 })
 export class ProfileComponent implements OnInit {
 

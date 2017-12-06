@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <h4>Stastics</h4>
+  </div>
+  <div class="row">
+    <div class="col s6"></div>
+    <div style="display: block">
+      <canvas baseChart
+                  [data]="doughnutChartData"
+                  [labels]="doughnutChartLabels"
+                  [chartType]="doughnutChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+</div>

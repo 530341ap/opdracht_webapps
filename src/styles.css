@@ -23,3 +23,12 @@ main {
     color: white;
     background-color: #e64a19;
 }
+
+.not-active {
+    pointer-events: none;
+    cursor: default;
+ }
+
+ .breadcrumb {
+    margin-left: 10px;
+ }

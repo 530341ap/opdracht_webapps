@@ -1,4 +1,7 @@
 $(document).ready(function(){
+
+  $(".button-collapse").sideNav();
+  
   $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15, // Creates a dropdown of 15 years to control year,
@@ -19,18 +22,4 @@ $(document).ready(function(){
     ampmclickable: true, // make AM PM clickable
     aftershow: function(){} //Function for after opening timepicker
   });
-
-  // Check Radio-box
-  $(".rating input:radio").attr("checked", false);
-  
-      $('.rating input').click(function () {
-          $(".rating span").removeClass('checked');
-          $(this).parent().addClass('checked');
-      });
-  
-      $('input:radio').change(
-        function(){
-          var userRating = this.value;
-          alert(userRating);
-      }); 
 });

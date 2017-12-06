@@ -1,23 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { ChartsModule } from 'ng2-charts';
 import { NgModule } from '@angular/core';
-
+import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HttpModule } from '@angular/http';
-import { AddMoodComponent } from './moods/add-mood/add-mood.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthenticationService } from './authentication.service';
+import { AuthGuardService } from './auth-guard.service';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AddMoodComponent
+    AppComponent
   ],
   imports: [
+    ChartsModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [AuthenticationService, AuthGuardService]
 })
 export class AppModule { }

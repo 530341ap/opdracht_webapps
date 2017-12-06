@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 
 let moodSchema = mongoose.Schema({
     date: Date,
+    year: Number,
+    month: Number,
     activtities:[
         {
             type: mongoose.Schema.Types.ObjectId,

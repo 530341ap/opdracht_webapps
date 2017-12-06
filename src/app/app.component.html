@@ -1,7 +1,7 @@
 <div class='content'>
 <header>
         <ul id="dropdown1" class="dropdown-content">
-          <li *ngIf="!loggedin"><a routerLink="users/login">Sign in</a></li>
+          <li *ngIf="!loggedin"><a routerLink="users/login">Log in</a></li>
           <li *ngIf="!loggedin"><a routerLink="users/register">Register</a></li>
           <li *ngIf="loggedin"><a routerLink="profile">Your profile</a></li>
           <li *ngIf="loggedin" class="divider"></li>
@@ -10,12 +10,23 @@
         <nav>
           <div class="nav-wrapper light-green darken-1">
             <a routerLink="home" class="brand-logo">Moodio</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li *ngIf="loggedin"><a routerLink="moods">Moods</a></li>
-              <li *ngIf="loggedin"><a routerLink="fitness">Fitness</a></li>
               <li *ngIf="loggedin"><a routerLink="food">Food</a></li>
               <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons left">person</i>Account</a></li>
             </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a class="not-active header">Menu</a></li>
+                <li *ngIf="loggedin"><a routerLink="moods">Moods</a></li>
+                <li *ngIf="loggedin"><a routerLink="food">Food</a></li>
+                <li *ngIf="loggedin"><div class="divider"></div></li>
+                <li *ngIf="loggedin"><a class="subheader">Account</a></li>
+                <li *ngIf="!loggedin"><a routerLink="users/login">Log in</a></li>
+                <li *ngIf="!loggedin"><a routerLink="users/register">Register</a></li>
+                <li *ngIf="loggedin"><a routerLink="profile">Your profile</a></li>
+                <li *ngIf="loggedin"><a routerLink="users/logout">Logout</a></li>
+              </ul>
           </div>
         </nav>
       </header>

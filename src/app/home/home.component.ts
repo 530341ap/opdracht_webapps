@@ -6,7 +6,7 @@ import { AuthGuardService } from '../auth-guard.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [AuthenticationService, AuthGuardService]
+   
 })
 export class HomeComponent implements OnInit {
   public loggedin: boolean;

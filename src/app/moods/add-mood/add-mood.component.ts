@@ -47,4 +47,28 @@ export class AddMoodComponent implements OnInit {
       this.router.navigate(['/moods']);
     }
   }
+
+  autocompleteInit = {
+    autocompleteOptions: {
+      data: this._activities,
+      limit: Infinity,
+      minLength: 1
+    }
+  };  
+
+  add(chip) {
+    this._cardActivities.push(chip.tag);
+  }
+
+  delete(chip) {
+    this._cardActivities.pop();
+  }
+
+  select(chip) {
+    console.log("Chip selected: " + chip.tag);
+  }
+
+  setMood(mood) {
+    this._cardCategory = this._categories.find(item => item.name.toLowerCase() == mood)
+  }
 }

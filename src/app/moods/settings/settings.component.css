@@ -2,9 +2,5 @@
     font-size: 50px;
     color: rgb(46, 46, 46)
 }
-.center-align p {
-    text-align: center;
-}
-button {
-    width: 100%;
-}
+
+.close { cursor: pointer; }

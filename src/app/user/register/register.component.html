@@ -14,7 +14,7 @@
         <div [formGroup]="passwordGroup">
         <div class="input-field col s6">
           <label for="password">Password:</label>
-          <input type="text" id="password" formControlName='password'>
+          <input type="password" id="password" formControlName='password'>
           <div class='valign-wrapper error' 
           *ngIf='passwordGroup.get("password").errors?.passwordTooShort && passwordGroup.get("password").touched'>
           <i class="material-icons left">error_outline</i>Password needs to be at least 8 characters long
@@ -22,7 +22,7 @@
         </div>
         <div class="input-field col s6">
           <label for="confirmpassword">Confirm password:</label>
-          <input type="text" id="confirmpassword" formControlName='confirmPassword'>
+          <input type="password" id="confirmpassword" formControlName='confirmPassword'>
           <div class='valign-wrapper error' 
           *ngIf='passwordGroup.errors?.passwordsDiffer && passwordGroup.get("confirmPassword").touched'>
           <i class="material-icons left">error_outline</i>Passwords don't match

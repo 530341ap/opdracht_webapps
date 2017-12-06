@@ -6,7 +6,7 @@ import { AuthGuardService } from '../auth-guard.service';
   selector: 'app-food',
   templateUrl: './food.component.html',
   styleUrls: ['./food.component.css'],
-  providers: [AuthenticationService, AuthGuardService]
+   
 })
 export class FoodComponent implements OnInit {
 

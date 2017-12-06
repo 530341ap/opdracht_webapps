@@ -9,8 +9,7 @@ import { User } from '../User.model';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
-  providers: [AuthenticationService, AuthGuardService]
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
   public user: FormGroup;

@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class AuthenticationService {
-  private _url = 'http://localhost:4200/API/users';
+  private _url = 'API/users';
   private _user$: BehaviorSubject<string>;
   public redirectUrl: string;
   
@@ -28,6 +28,7 @@ export class AuthenticationService {
           localStorage.setItem('currentUser', 
             JSON.stringify({ username: username, token: token }));
           this._user$.next(username);
+          console.log(this.user$.value)
           return true;
         } else {
           return false;

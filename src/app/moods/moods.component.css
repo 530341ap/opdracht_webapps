@@ -15,12 +15,9 @@
 }
 
 .collection {
-    margin: 0px;
+    margin: 20px 0px;
 }
 
-.dropdown-button {
-    width: 100%;
-}
 
 .collection .active {
     background-color: #ffb300;
@@ -29,4 +26,22 @@
 
 .collection .collection-item {
     color: #ff8f00;
+    cursor: pointer;
+}
+
+select {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 5px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    height: 3rem;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    opacity: 1 !important;
+    border-bottom: 2px solid #ffb300;
+    color: #ff8f00 !important;
+}
+select:focus {
+    outline: 1px solid transparent;
 }

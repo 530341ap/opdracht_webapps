@@ -9,7 +9,7 @@ import { HttpModule } from '@angular/http';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [AuthenticationService, AuthGuardService]
+   
 })
 export class LoginComponent implements OnInit {
   public user: FormGroup;
@@ -24,11 +24,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.user.value.username)
-    console.log(this.user.value.password)
     this.authService.login(this.user.value.username, 
             this.user.value.password).subscribe(val => {
-      console.log("pls do something")
       if (val) {
         if (this.authService.redirectUrl) {
           this.router.navigateByUrl(this.authService.redirectUrl);
@@ -37,6 +34,6 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/home']);
         }
       }
-    }, err => this.errorMsg = err.json().message);
+    }, err => {console.log('login');console.log(err);this.errorMsg = err.json().message});
   }
 }

@@ -1,7 +1,7 @@
-<div id="container">
+<div class="container">
 <div class="row">
-  <h1 class="title" *ngIf="mood == null">Add mood</h1>
-  <h1 class="title" *ngIf="mood != null">Change </h1>
+  <h4 class="title" *ngIf="mood == null">Add mood</h4>
+  <h4 class="title" *ngIf="mood != null">Change </h4>
   <form [formGroup]='moodform' (ngSubmit)='onSubmit()'>
     <div class="row">
       <div class="input-field col s6">
@@ -14,20 +14,34 @@
       </div>
     </div>
     <div class="row">
-      <div *ngFor="let activity of activities"  class="col s6">
-        <label for="{{activity}}">{{activity}}</label>
-        <input name="group3" type="checkbox" id="{{activity}}" checked />
+      <div class="input-field col s6">
+        <label for="activities">Activities</label>
+        <div class="chips" id="activities" materialize="material_chip" [materializeParams]="[autocompleteInit]" (chip.add)="add($event.detail)" (chip.delete)="delete($event.detail)" (chip.select)="select($event.detail)"></div>
       </div>
     </div>
     <div class="row"><h5>Category</h5></div>
       <div class="row">
-      <div class="col s6">
-        <div class="rating" id="category">
-          <span *ngFor="let category of categories"><input type="radio" name="rating" id="str5" value="{{category.name}}"><label for="str5"></label>
-            <span class="categoryName">Amazing</span></span>
+          <div class="col s1 center-align" (click)='setMood("amazing")'>
+              <a class="btn-floating btn-large waves-effect waves-light amber lighten-2"><i class="material-icons">sentiment_very_satisfied</i></a>
+              <p>Amazing</p>
+          </div>
+          <div class="col s1 center-align" (click)='setMood("good")'>
+              <a class="btn-floating btn-large waves-effect waves-light green lighten-2"><i class="material-icons">sentiment_satisfied</i></a>
+              <p>Good</p>
+          </div>
+          <div class="col s1 center-align" (click)='setMood("meh")'>
+              <a class="btn-floating btn-large waves-effect waves-light purple lighten-2"><i class="material-icons">sentiment_neutral</i></a>
+              <p>Meh</p>  
+          </div>
+          <div class="col s1 center-align" (click)='setMood("not good")'>
+              <a class="btn-floating btn-large waves-effect waves-light blue lighten-2"><i class="material-icons">sentiment_dissatisfied</i></a>
+              <p>Not good</p>
+          </div>
+          <div class="col s1 center-align" (click)='setMood("horrible")'>
+            <a class="btn-floating btn-large waves-effect waves-light red lighten-2"><i class="material-icons">sentiment_very_dissatisfied</i></a>
+            <p>Horrible</p>
+          </div>
       </div>
-      </div>
-    </div>
     <div class="row">
       <div class="input-field col s2">
         <button type="submit" class="waves-effect waves-light btn amber darken-1" >Save</button>
