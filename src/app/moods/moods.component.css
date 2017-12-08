@@ -1,18 +1,13 @@
-.btn-floating {
-    margin: 15px 0px;
-    display: block;
-}
 
-.fixed-action-btn {
+
+.btn-floating {
     float: right;
     position: relative;
     left: 0px;
     bottom: 0px;
-  }
-
-.toolbar.active {
     margin: 15px 0px;
-}
+    display: block;
+  }
 
 .collection {
     margin: 20px 0px;
@@ -44,4 +39,8 @@ select {
 }
 select:focus {
     outline: 1px solid transparent;
+}
+
+.card-action a i {
+    color: black;
 }

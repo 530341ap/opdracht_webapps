@@ -2,12 +2,12 @@ import { MoodCategory } from "./moodCategory.model";
 import { Activity } from "./activity.model";
 
 export class Mood {
-    private _id: Number;
+    private _id: string;
     private _category: MoodCategory;
     private _activities: Activity[];
     private _date: Date;
 
-    constructor(date: Date, category:MoodCategory, activities: Activity[] = [], id?:Number) {
+    constructor(date: Date, category:MoodCategory, activities: Activity[] = [], id?:string) {
         this._category = category;
         this._id = id;
         this._activities = activities;

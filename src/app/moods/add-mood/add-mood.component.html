@@ -1,23 +1,33 @@
 <div class="container">
 <div class="row">
   <h4 class="title" *ngIf="mood == null">Add mood</h4>
-  <h4 class="title" *ngIf="mood != null">Change </h4>
+  <h4 class="title" *ngIf="mood != null">Change mood</h4>
   <form [formGroup]='moodform' (ngSubmit)='onSubmit()'>
     <div class="row">
       <div class="input-field col s6">
-        <input data-error="Geef een geldige date in" id="date" type="text" class="datepicker" formControlName='date'>
+        <input data-error="Geef een geldige date in" id="date" type="text" materialize="pickadate" class="datepicker" formControlName='date'>
         <label for="date">Date</label>
       </div>
       <div class="input-field col s6">
-        <input data-error="Geef een geldige tijd in" id="time" type="text" class="timepicker" formControlName='time'>
+        <input data-error="Geef een geldige tijd in" id="time" type="text" materialize="pickatime" class="timepicker" formControlName='time'>
         <label for="time">Time</label>
       </div>
     </div>
     <div class="row">
-      <div class="input-field col s6">
-        <label for="activities">Activities</label>
-        <div class="chips" id="activities" materialize="material_chip" [materializeParams]="[autocompleteInit]" (chip.add)="add($event.detail)" (chip.delete)="delete($event.detail)" (chip.select)="select($event.detail)"></div>
-      </div>
+      <div class="input-field col s8">
+              <input id="name" type="text" class="validate" formControlName='activity'>
+              <label for="name">Activity</label>
+            </div>
+            <div class="input-field col s4">
+              <a (click)="add()" class="waves-effect waves-light btn amber darken-1" >Add</a>
+            </div>
+            </div>
+            <div class="row">
+      <div *ngFor="let activity of activities" class="chip amber lighten-2">
+          
+            {{activity.name}} <i class="close material-icons right" (click)="delete(activity.name)">close</i>
+        
+        </div>
     </div>
     <div class="row"><h5>Category</h5></div>
       <div class="row">
@@ -41,6 +51,7 @@
             <a class="btn-floating btn-large waves-effect waves-light red lighten-2"><i class="material-icons">sentiment_very_dissatisfied</i></a>
             <p>Horrible</p>
           </div>
+          <div class="col s2" *ngIf="!hasCategory"><p>How are you feeling?</p></div>
       </div>
     <div class="row">
       <div class="input-field col s2">

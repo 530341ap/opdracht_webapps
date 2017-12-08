@@ -13,13 +13,15 @@
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li *ngIf="loggedin"><a routerLink="moods">Moods</a></li>
-              <li *ngIf="loggedin"><a routerLink="food">Food</a></li>
+              <li *ngIf="loggedin"><a routerLink="settings">Settings</a></li>
+              <li *ngIf="loggedin"><a routerLink="statistics">Statistics</a></li>
               <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons left">person</i>Account</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
                 <li><a class="not-active header">Menu</a></li>
                 <li *ngIf="loggedin"><a routerLink="moods">Moods</a></li>
-                <li *ngIf="loggedin"><a routerLink="food">Food</a></li>
+                <li *ngIf="loggedin"><a routerLink="settings">Settings</a></li>
+                <li *ngIf="loggedin"><a routerLink="statistics">Statistics</a></li>
                 <li *ngIf="loggedin"><div class="divider"></div></li>
                 <li *ngIf="loggedin"><a class="subheader">Account</a></li>
                 <li *ngIf="!loggedin"><a routerLink="users/login">Log in</a></li>

@@ -15,53 +15,62 @@ export class MoodsComponent implements OnInit {
   private _currentYear: Number;
   private _username: string;
   private _moods: Mood[];
+  private _filteredMoods: Mood[];
   private _years: Number[];
   private _month: Number;
   public active: boolean;
+  private _months = ["january","februari","march","april","may","june","july","september","october","november","december"]
   constructor(private moodDataService: MoodDataService, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this._years = []
     var date = new Date()
     this._month = date.getMonth()+1;
+    this._currentYear = date.getFullYear();
     var el = document.getElementById(this._month.toString())
     el.setAttribute("class","collection-item active");
     this.authenticationService.user$.subscribe(val => {
       this._username = val;
     })
-    this.moodDataService.moodsByUsernameAndYear(this._username, date.getFullYear()).subscribe(
-      moods => this._moods = moods);
+    this.moodDataService.moodsByUsername(this._username).subscribe(
+      moods => {
+        this._moods = moods
+        this._filteredMoods = moods.filter(mood => new Date(mood.date).getFullYear() == this._currentYear && new Date(mood.date).getMonth() == this._month.valueOf()-1)});
     this.moodDataService.years(this._username).subscribe(items => {
-      var array = this._years;
-      items.filter(function(value, index){ 
-        return  array.indexOf(value) == index;})
+      items.push(date.getFullYear());
+      items.forEach(item => {
+        var index = items.findIndex(year => year == item);
+        if (index > -1) {
+          items.splice(index, 1);
+        }
+      })
       this._years = items;
-      if(this._years.length == 0 || !this._years.find(year => year == date.getFullYear()))
-      {
-        this._years.push(date.getFullYear())
-      }
     });
   }
 
   get moods() {
-    return this._moods;
+    return this._filteredMoods;
   }
 
   get anyMoods() {
-    return this._moods == null || this._moods.length == 0;
+    return this._filteredMoods == null || this._filteredMoods.length == 0;
   }
 
   get years() {
     return this._years;
   }
 
+  get currentPlace() {
+    return this._months[this._month.valueOf()-1] + " " + this._currentYear
+  }
+
   selectYear(year) {
     this._currentYear = year;
-    this.moodDataService.moodsByUsernameAndYear(this._username, year).subscribe( moods => this._moods = moods);
+    this._filteredMoods = this._moods.filter(mood => new Date(mood.date).getFullYear() == year && new Date(mood.date).getMonth() == this._month.valueOf()-1)
   }
 
   changeMonth(month){
-    this.moodDataService.moodsByMonth(this._username, this._currentYear, month).subscribe( moods => this._moods = moods);
+    this._filteredMoods = this._moods.filter(mood => new Date(mood.date).getFullYear() == this._currentYear && new Date(mood.date).getMonth() == month-1)
     var el = document.getElementById(month)
     el.setAttribute("class","collection-item active");
     var el = document.getElementById(this._month.toString())
@@ -69,4 +78,21 @@ export class MoodsComponent implements OnInit {
     this._month = month;
   }
 
+  deleteMood(mood) {
+    this.moodDataService.deleteMood(mood).subscribe()
+    this.moodDataService.moodsByUsername(this._username).subscribe(
+      moods => {
+        this._moods = moods
+        this._filteredMoods = moods.filter(mood => new Date(mood.date).getFullYear() == this._currentYear && new Date(mood.date).getMonth() == this._month.valueOf()-1)});
+  }
+
+  getDate(date) {
+    var val = new Date(date)
+    var minutes = val.getMinutes().toString()
+    if(minutes.length == 1)
+    {
+      minutes = "0" + minutes
+    }
+    return val.getDay() + " " + this._months[val.getMonth()-1] + " " + val.getFullYear() + " " + val.getHours() + ":"+ minutes
+  }
 }

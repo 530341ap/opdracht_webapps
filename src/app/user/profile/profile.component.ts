@@ -6,13 +6,20 @@ import { AuthGuardService } from '../../auth-guard.service';
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-   
+  providers: [AuthenticationService, AuthGuardService]
 })
 export class ProfileComponent implements OnInit {
+  private _username: string;
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
+    this.authenticationService.user$.subscribe(val => {
+      this._username = val;
+    })
   }
 
+  get username() {
+    return this._username
+  }
 }

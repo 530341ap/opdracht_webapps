@@ -4,7 +4,7 @@ let moodSchema = mongoose.Schema({
     date: Date,
     year: Number,
     month: Number,
-    activtities:[
+    activities:[
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Activity'

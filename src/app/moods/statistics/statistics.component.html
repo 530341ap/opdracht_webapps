@@ -1,16 +1,33 @@
 <div class="container">
   <div class="row">
-    <h4>Stastics</h4>
+    <h4>Statistics</h4>
   </div>
   <div class="row">
-    <div class="col s6"></div>
+    <div class="col s12 center-align">
+    <h5 >Mood counter</h5>
     <div style="display: block">
       <canvas baseChart
                   [data]="doughnutChartData"
                   [labels]="doughnutChartLabels"
                   [chartType]="doughnutChartType"
+                  [colors]="doughnutColors"
                   (chartHover)="chartHovered($event)"
                   (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+    <div class="col s12 center-align">
+      <h5>Activities done per mood</h5>
+            <div style="display: block">
+              <canvas baseChart
+                      [datasets]="barChartData"
+                      [labels]="barChartLabels"
+                      [options]="barChartOptions"
+                      [legend]="barChartLegend"
+                      [chartType]="barChartType"
+                      [colors]="barChartColors"
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)"></canvas>
+            </div>
     </div>
   </div>
 </div>

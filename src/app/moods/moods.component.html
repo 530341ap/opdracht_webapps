@@ -2,16 +2,7 @@
 <div class='row'>
   <div class='col s3'><h3>Moods</h3></div>
   <div class='col offset-s1 s8'>
-      <div class="fixed-action-btn toolbar">
-          <a class="btn-floating btn-large amber darken-1">
-            <i class="large material-icons">menu</i>
-          </a>
-          <ul>
-            <li class="waves-effect waves-light"><a routerLink="/settings"><i class="material-icons">settings</i></a></li>
-            <li class="waves-effect waves-light"><a routerLink="/statistics"><i class="material-icons">insert_chart</i></a></li>
-            <li class="waves-effect waves-light"><a routerLink="/addMood"><i class="material-icons">add</i></a></li>
-          </ul>
-        </div>
+      <a routerLink="/addMood" class="btn-floating btn-large waves-effect waves-light amber darken-1"><i class="material-icons">add</i></a>
   </div>
 </div>
 <div class='row'>
@@ -19,8 +10,7 @@
   <div class='row'><h4>Choose a month</h4></div>
   <div class='row'>
       <div class="col s12">
-          <select (change)="selectYear($event.value)">
-            <option value="" disabled selected>Choose a year</option>
+          <select #yearSelect (change)="selectYear(yearSelect.value)">
             <option *ngFor="let year of years" value="{{year}}">{{year}}</option>
           </select>
       </div>
@@ -45,17 +35,18 @@
 <div class='col offset-s1 s8'>
   <div class='row'>
       <div class="col s12" *ngIf="anyMoods">
-        <h3 class="center-align">U heeft nog geen kaarten voor </h3>
+        <h3 class="center-align">You have no cards for {{currentPlace}} </h3>
       </div>
-      <div class="col s12 m6" *ngFor="let mood of moods">
-          <div class="card small">
+      <div class="col s12 m6 l4" *ngFor="let mood of moods">
+          <div class="card small {{mood.category.color}}">
             <div class="card-content">
-              <span class="card-title">{{mood.category.name}}</span>
+                <p>{{getDate(mood.date)}}</p>
+              <span class="card-title"> Mood: {{mood.category.name}} </span>
               <p *ngFor="let activity of mood.activities">{{activity.name}}</p>
             </div>
-            <div class="card-action">
-              <a routerLink="editMood/{mood}"><i class="small material-icons">edit</i></a>
-              <a routerLink="removeMood/{mood}"><i class="small material-icons">delete</i></a>
+            <div class="card-action">  
+              <a routerLink="editMood/{{mood.id}}"><i class="small material-icons">edit</i></a>
+              <a ><i (click)='deleteMood(mood)' class="small material-icons">delete</i></a>
             </div>
           </div>
         </div>

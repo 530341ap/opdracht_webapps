@@ -6,6 +6,7 @@ export class MoodCategory {
     constructor(color:String, name:String, id?:Number) {
         this._color = color;
         this._id = id;
+        this._name = name;
     }
 
     get color() {
