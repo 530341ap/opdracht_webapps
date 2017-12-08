@@ -92,6 +92,7 @@ router.get('/API/activitiesbyusername', function(req, res, next) {
 
 router.post('/API/addactivity', function(req,res,next){
   let activity = new Activity()
+  console.log(req.body.a)
   activity.icon = req.body.a.icon
   activity.name = req.body.a.name
   User.findOne({"username":req.body.user}).exec(function(err, user){

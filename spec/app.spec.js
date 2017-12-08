@@ -1,54 +1,75 @@
-let Request = require ('request');
+var Request = require("request");
+const env = require('env2')('.\env');
 
-describe("server",() => {
-	let recipeid;
-
-	describe("POST /API/addactivity",() =>{
-		let data = {};
-		beforeAll((done) => {
-			Request({methode:'POST',uri:'http://localhost:3000/API/addactivity',body:{m:{icon:"", name:"Hiking"}},json:true},(error, response) => {  
+describe("Server", () => {
+    let server;
+    let firstActivityId;
+    beforeAll(() => {
+        server = require("../app");
+    });
+    afterAll(() => {
+    });
+    describe("POST /API/addcategories", () => {
+        let data = {};
+        console.log(process.env.VALID_TOKEN)
+        // add a new recipe to our database
+        beforeAll((done) => {
+            Request(
+                { method: 'POST'
+                , uri: 'http://localhost:3000/API/addcategories'
+                , json: true
+                , body:{cats:[{color:"amber",name:"fantastic"}]}
+                }, (error, response, body) => {
                 data.status = response.statusCode;
-				data.body = JSON.parse(response.body);
-				done();
-			}).auth(null,null,true,process.env.VALID_TOKEN)
-		});
-		it("status",() => {
-			expect(data.status).toBe(200);
-		});
-		it("body",()=>{
-			expect(data.body.m.name).toBe("Hiking");
-			expect(data.body.length).toBe(0);
-			expect(data.body.m._id).toBeDefined();
-			recipeid = data.body.m._id;
-		});
-	})
-	describe("DELETE /API/deleteactivity",() =>{
-		beforeAll((done) => {
-			Request.delete(`http://localhost:3000/API/deleteactivity${recipeid}`,(error, response) => {
-				data.status = response.statusCode;
-				data.body = JSON.parse(response.body);
-				done();
-			}).auth(null,null,true,process.env.VALID_TOKEN)
-		});
-		it("status",() => {
-			expect(data.status).toBe(200);
-		});
-	})
-	describe("GET /API/moods",() =>{
-		let data = {};
-		beforeAll((done) => {
-			Request.get("http://localhost:3000/API/moods",(error, response) => {
-				data.status = response.statusCode;
-				data.body = JSON.parse(response.body);
-				done();
-			}).auth(null,null,true,process.env.VALID_TOKEN)
-		});
-		it("status",() => {
-			expect(data.status).toBe(200);
-		});
-		it("body",()=>{
-			expect(data.body.length).toBe(1);
-		});
-	})
-	
+                data.body = body;
+                done();
+            }).auth(null, null, true, process.env.VALID_TOKEN);
+        });
+        it("status 200", () => {
+            expect(data.status).toBe(200);
+        });
+        it("check body", () => {
+            expect(data.body.cats[0].name).toBe("amazing");
+            expect(data.body.cats[0]._id).toBeDefined();
+        });
+    });
+    describe("GET /API/moods", () => {
+        var data = {};
+        beforeAll((done) => {
+            Request.get("http://localhost:3000/API/moods", (error, response, body) => {
+                data.status = response.statusCode;
+                data.body = JSON.parse(body);
+                done();
+            }).auth(null, null, true, process.env.VALID_TOKEN);
+        });
+        it("Status 200", () => {
+            expect(data.status).toBe(200);
+        });
+        it("Body", () => {
+            expect(data.body.length).toBe(6);
+        });
+    });
+    describe("POST /API/checkactivity", () => {
+        let data = {};
+        console.log(process.env.VALID_TOKEN)
+        // add a new recipe to our database
+        beforeAll((done) => {
+            Request(
+                { method: 'POST'
+                , uri: 'http://localhost:3000/API/checkactivity'
+                , json: true
+                , body:{username:"aissa",a:"Hiking"}
+                }, (error, response, body) => {
+                data.status = response.statusCode;
+                data.body = body;
+                done();
+            }).auth(null, null, true, process.env.VALID_TOKEN);
+        });
+        it("status 200", () => {
+            expect(data.status).toBe(200);
+        });
+        it("check body", () => {
+            expect(data.body.activity).toBe("exists");
+        });
+    });
 });
