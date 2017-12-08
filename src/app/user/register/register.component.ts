@@ -29,10 +29,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.user.valid)
-    console.log(this.passwordGroup.valid)
     if(this.user.valid && this.passwordGroup.valid){
-      console.log("are u alive?")
       this.authenticationService.register(this.user.value.username, this.passwordGroup.value.password).subscribe(val => console.log(val));
       this.router.navigate(['/home']);
     }

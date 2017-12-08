@@ -29,7 +29,6 @@ export class MoodDataService {
     header.append("id",id)
     return this.http.get(this._url + "moodbyid", {headers: header}).map(
       res => res.json()).map(item => {
-        console.log(item.id)
         return new Mood(item.date, item.moodCategory, item.activities, item._id)
       });
   }
@@ -45,7 +44,6 @@ export class MoodDataService {
   }
 
   addMood(mood, username): Observable<Mood> {
-    console.log(mood);
     return this.http.post(this._url + "addmood", {m:mood, user: username})
       .map(res => res.json()).map(item => 
         {
@@ -57,7 +55,6 @@ export class MoodDataService {
     return this.http.put(this._url + "editmood", {m:mood, user: username})
       .map(res => res.json()).map(item => 
         {
-          console.log(item._id)
         return new Mood(item.date, item.moodCategory, item.activities, item._id)
       });
     }
@@ -82,7 +79,6 @@ export class MoodDataService {
     activitiesByUsername(name): Observable<Activity[]> {
       let header = new Headers();
       header.append("username", name)
-      console.log(name)
       return this.http.get(this._url + "activitiesbyusername", {headers: header}).map(
         res => res.json().map(item =>{
           return new Activity(item.icon, item.name, item._id)}
@@ -90,7 +86,6 @@ export class MoodDataService {
     }
 
     deleteActivity(naam) {
-      console.log(naam)
       return this.http.post(this._url + "deleteactivity", {name: naam})
       .map(res => res.json()).map(item => 
         {

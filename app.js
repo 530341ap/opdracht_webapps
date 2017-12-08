@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+const env = require('env2')('.\env');
 
 var mongoose = require('mongoose');
 require('./models/Activity');
@@ -13,7 +14,7 @@ require('./models/Mood');
 require('./models/MoodCategory');
 require('./models/User');
 require('./config/passport');
-mongoose.connect('mongodb://localhost/mooddb', {  useMongoClient: true });
+mongoose.connect(process.env.DATABASE, {  useMongoClient: true });
 //"c:\Program Files\MongoDB\Server\3.4\bin\mongod.exe" --dbpath "c:\Program Files\MongoDB\data\db"
 
 var index = require('./server/routes/index');

@@ -11,7 +11,6 @@ describe("Server", () => {
     });
     describe("POST /API/addcategories", () => {
         let data = {};
-        console.log(process.env.VALID_TOKEN)
         // add a new recipe to our database
         beforeAll((done) => {
             Request(
@@ -51,7 +50,6 @@ describe("Server", () => {
     });
     describe("POST /API/checkactivity", () => {
         let data = {};
-        console.log(process.env.VALID_TOKEN)
         // add a new recipe to our database
         beforeAll((done) => {
             Request(

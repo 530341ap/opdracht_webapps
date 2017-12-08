@@ -19,7 +19,7 @@ export class MoodsComponent implements OnInit {
   private _years: Number[];
   private _month: Number;
   public active: boolean;
-  private _months = ["january","februari","march","april","may","june","july","september","october","november","december"]
+  private _months = ["january","februari","march","april","may","june","july","august","september","october","november","december"]
   constructor(private moodDataService: MoodDataService, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
@@ -44,6 +44,9 @@ export class MoodsComponent implements OnInit {
           items.splice(index, 1);
         }
       })
+      if(items.length==0){
+        items.push(date.getFullYear())
+      }
       this._years = items;
     });
   }

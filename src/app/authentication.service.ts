@@ -19,7 +19,6 @@ export class AuthenticationService {
   }       
 
   login(username: string, password: string): Observable<boolean> {
-    console.log(username);
     return this.http.post(`${this._url}/login`, 
       { username: username, password: password })
       .map(res => res.json()).map(res => {
@@ -28,7 +27,7 @@ export class AuthenticationService {
           localStorage.setItem('currentUser', 
             JSON.stringify({ username: username, token: token }));
           this._user$.next(username);
-          console.log(this.user$.value)
+
           return true;
         } else {
           return false;
@@ -37,11 +36,10 @@ export class AuthenticationService {
   }
   
   register(username: string, password: string): Observable<boolean> {
-    console.log("Service")
     return this.http.post(`${this._url}/register`, 
       { username: username, password: password })
       .map(res => res.json()).map(res => {
-        console.log(username);
+
         const token = res.token;
         if (token) {
           localStorage.setItem('currentUser', 

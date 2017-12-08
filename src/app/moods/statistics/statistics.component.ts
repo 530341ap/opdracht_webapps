@@ -16,7 +16,7 @@ export class StatisticsComponent implements OnInit {
   private _username: string;
   // Doughnut
   public doughnutChartLabels:string[] = [];
-  public doughnutChartData:number[] = [];
+  public doughnutChartData:number[] = [0];
   public doughnutChartType:string = 'doughnut';
   public doughnutColors: Array<any> =[{backgroundColor: ["#ffc107","#4caf50","#9c27b0","#2196f3","#f44336"]}]
   private _moods: Mood[]
@@ -40,13 +40,14 @@ export class StatisticsComponent implements OnInit {
     })
     this._moodService.moodsByUsername(this._username).subscribe(moods =>{
       var data = []
+      var data2 = []
       var categories : string[] = []
       this._moods = moods
       this._moodService.moods().subscribe(cs => {
         this.doughnutChartLabels = cs.map(c => c.name.valueOf())
         cs.forEach(c => {
           var amount = this._moods.filter(m => m.category.name == c.name).length
-          this.doughnutChartData.push(amount)
+          data2.push(amount)
           var dataForCategory = []
           this._moodService.activitiesByUsername(this._username).subscribe(activities => {
             this.barChartLabels = activities.map(a => a.name.valueOf())
@@ -58,6 +59,7 @@ export class StatisticsComponent implements OnInit {
           })
         })
         setTimeout(() => {this.barChartData = data},100)
+        setTimeout(() => {this.doughnutChartData = data2},100)
       }) 
       
     })

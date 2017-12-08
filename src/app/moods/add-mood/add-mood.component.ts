@@ -43,7 +43,6 @@ export class AddMoodComponent implements OnInit {
     this.route.paramMap.subscribe(par => {
       if(par.get("id") != null || par.get("id") != undefined){
       this._moodService.moodById(this._username, par.get('id')).subscribe(item => {
-        console.log(item)
         this._mood = item
         this.veranderMood(item);
       })}
@@ -54,8 +53,6 @@ export class AddMoodComponent implements OnInit {
     var chosenDate: string = this.moodform.value.date
     var chosenTime: string = this.moodform.value.time
     this._date = new Date(chosenDate)
-    console.log(chosenDate)
-    console.log(chosenTime)
     var hour = Number.parseInt(chosenTime.substr(0,2))
     if(chosenTime.substr(5,2)=="AM")
     {
@@ -92,13 +89,10 @@ export class AddMoodComponent implements OnInit {
   }
 
   delete(chip) {
-    console.log(chip)
     var index = this._cardActivities.findIndex(item => item.name.toLowerCase === chip.toLowerCase);
-    console.log(index)
     if (index > -1) {
        this._cardActivities.splice(index, 1);
     }
-    console.log(this._cardActivities)
   }
 
   select(chip) {
@@ -135,6 +129,5 @@ export class AddMoodComponent implements OnInit {
     this.moodform.get("time").setValue(hour)
     this._cardActivities = mood.activities
     this._cardCategory = mood.category
-    console.log(this._cardCategory)
   }
 }

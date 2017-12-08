@@ -22,7 +22,6 @@ export class AppComponent {
     this.authenticationService.user$.subscribe(val => {
       this.loggedin = (val != null);
       username = val
-      console.log(val)
     })
     /*var categories = [new MoodCategory("amber lighten-2","Amazing"),new MoodCategory("green lighten-2","Good"),
     new MoodCategory("purple lighten-2","Meh"), new MoodCategory("blue lighten-2","Not good"), 

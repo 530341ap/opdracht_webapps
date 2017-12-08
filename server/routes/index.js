@@ -52,7 +52,6 @@ router.post('/API/addmood', function(req,res,next){
 
 router.put('/API/editmood', function(req,res,next){
   Mood.findOne({"_id":req.body.m.id}).exec(function(err,mood){
-  console.log(req.body.m.id)
   mood.date = req.body.m.date
   User.findOne({"username":req.body.user}).exec(function(err, user){
     let names = req.body.m.activities.map(a => a.name)
@@ -72,7 +71,6 @@ router.put('/API/editmood', function(req,res,next){
 });
 
 router.post('/API/deletemood', function(req,res,next){
-  console.log(req.body.id)
  Mood.findOneAndRemove({"_id":req.body.id}).exec(function(err, rec) {
   if (err){ return next(err); }
     res.json(rec);
@@ -81,7 +79,6 @@ router.post('/API/deletemood', function(req,res,next){
 
 router.get('/API/activitiesbyusername', function(req, res, next) {
   let username = req.get("username")
-  console.log(username)
   User.findOne({"username":username}).exec(function(err, user){
     Activity.find({"user": user._id}, function(err,activities){
       if (err) { return next(err); }
@@ -92,7 +89,6 @@ router.get('/API/activitiesbyusername', function(req, res, next) {
 
 router.post('/API/addactivity', function(req,res,next){
   let activity = new Activity()
-  console.log(req.body.a)
   activity.icon = req.body.a.icon
   activity.name = req.body.a.name
   User.findOne({"username":req.body.user}).exec(function(err, user){
@@ -105,7 +101,6 @@ router.post('/API/addactivity', function(req,res,next){
 });
 
 router.post('/API/deleteactivity', function(req,res,next){
-  console.log(req.body.name)
  Activity.findOneAndRemove({"name":req.body.name}).exec(function(err, rec) {
   if (err){ return next(err); }
     res.json(rec);
