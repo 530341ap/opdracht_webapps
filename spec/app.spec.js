@@ -28,8 +28,8 @@ describe("Server", () => {
             expect(data.status).toBe(200);
         });
         it("check body", () => {
-            expect(data.body.cats[0].name).toBe("amazing");
-            expect(data.body.cats[0]._id).toBeDefined();
+            console.log(data.body)
+            expect(data.body.length).toBe(1);
         });
     });
     describe("GET /API/moods", () => {
@@ -67,7 +67,7 @@ describe("Server", () => {
             expect(data.status).toBe(200);
         });
         it("check body", () => {
-            expect(data.body.activity).toBe("exists");
+            expect(data.body.activity).toBe("none");
         });
     });
 });
