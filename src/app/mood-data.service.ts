@@ -9,7 +9,7 @@ import { MoodCategory } from './moods/moodCategory.model';
 
 @Injectable()
 export class MoodDataService {
-  private _url = "http://localhost:4200/API/";
+  private _url = window.location.origin+"/API/";
 
   constructor(private http: Http) {
   }
