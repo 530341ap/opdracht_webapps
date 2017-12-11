@@ -96,6 +96,6 @@ export class MoodsComponent implements OnInit {
     {
       minutes = "0" + minutes
     }
-    return val.getDay() + " " + this._months[val.getMonth()-1] + " " + val.getFullYear() + " " + val.getHours() + ":"+ minutes
+    return val.getDate() + " " + this._months[val.getMonth()] + " " + val.getFullYear() + " " + val.getHours() + ":"+ minutes
   }
 }
